@@ -21,7 +21,7 @@ Give Claude Code a topic and it builds a polished MARP deck with SVG charts, das
 ### 1. Clone
 
 ```bash
-git clone https://github.com/robertmilven/marp-slides-pro
+git clone https://github.com/ainjection/marp-slides-pro
 ```
 
 ### 2. Add to Claude Code
@@ -123,7 +123,7 @@ npx @marp-team/marp-cli slides.md --html --allow-local-files
 ## Credits
 
 - Original skill by [RoboNuggets](https://github.com/robonuggets/marp-slides)
-- Pro features and brand system by [AI Injection](https://github.com/robertmilven)
+- Pro features and brand system by [AI Injection](https://github.com/ainjection)
 
 ## License
 
