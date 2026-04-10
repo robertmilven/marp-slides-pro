@@ -1,11 +1,11 @@
 ---
-name: marp-slides
-description: Create beautiful MARP presentation decks with SVG charts, interactive elements, dashboard components, animations, dark/light themes. Triggers on 'marp', 'slides', 'presentation', 'deck'.
-version: 2.0
-updated: 2026-04-08
+name: marp-slides-pro
+description: Create professional MARP presentation decks with SVG charts, interactive elements, dashboard components, animations, dark/light themes, brand system, and 30+ layout templates. Triggers on 'marp', 'slides', 'presentation', 'deck'.
+version: 3.0
+updated: 2026-04-10
 ---
 
-# MARP Slides v2
+# MARP Slides Pro v3
 
 ## Prerequisites
 - VS Code extension "Marp for VS Code"
@@ -201,3 +201,241 @@ npx @marp-team/marp-cli slides.md --html --allow-local-files
 
 Custom dimensions: section { width: 540px; height: 720px; } (CSS not size: frontmatter).
 Portrait: stack vertically, scale down 15-20%.
+
+---
+
+## Brand Variable System (NEW in v3)
+
+Define brand colors once, retheme the entire deck by changing 3 variables:
+
+```css
+:root {
+  --brand-primary: #ff6b1a;    /* main CTA, highlights */
+  --brand-secondary: #2563eb;  /* secondary actions, links */
+  --brand-bg: #000;            /* slide background */
+  --brand-surface: #080808;    /* card backgrounds */
+  --brand-border: #111;        /* card borders */
+  --brand-text: #fff;          /* heading text */
+  --brand-body: #999;          /* body text */
+  --brand-muted: #555;         /* secondary text */
+}
+```
+
+To retheme: swap `--brand-primary` and `--brand-bg`. All components use these variables.
+
+### AI Injection Theme
+
+```css
+:root {
+  --brand-primary: #ff6600;
+  --brand-secondary: #c8ff00;
+  --brand-bg: #0a0a0a;
+  --brand-surface: #111;
+  --brand-border: #222;
+  --brand-text: #fff;
+  --brand-body: #aaa;
+  --brand-muted: #666;
+}
+```
+
+## Master Slide Classes (NEW in v3)
+
+Add `<!-- _class: classname -->` per slide for consistent layouts:
+
+### Title Slide
+```markdown
+<!-- _class: lead -->
+# Main Title
+## Subtitle goes here
+```
+
+### Section Break
+```markdown
+<!-- _class: lead -->
+<!-- _backgroundColor: var(--brand-primary) -->
+# Section Name
+```
+
+### Content Slide (default)
+Standard left-aligned content with heading + body.
+
+### Two-Column Split
+```html
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+<div>
+
+### Left Column
+Content here
+
+</div>
+<div>
+
+### Right Column
+Content here
+
+</div>
+</div>
+```
+
+### Three-Column Grid
+```html
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;">
+```
+
+### 60/40 Image Split
+```markdown
+![bg right:40% brightness:0.2](image-url)
+# Title on the left
+Body text with room to breathe
+```
+
+### Closing/CTA Slide
+```markdown
+<!-- _class: lead -->
+# Thank You
+## Questions? Reach out at **email@example.com**
+```
+
+## New Layout Components (NEW in v3)
+
+### Pricing Tier Cards
+```html
+<div style="display:flex; gap:16px; justify-content:center;">
+  <div style="flex:1; background:var(--brand-surface); border:1px solid var(--brand-border); border-radius:12px; padding:24px; text-align:center;">
+    <h3 style="color:var(--brand-muted);">FREE</h3>
+    <div style="font-size:2.4em; font-weight:800; color:var(--brand-text); margin:8px 0;">$0</div>
+    <p style="color:var(--brand-body); font-size:0.75em;">Basic features</p>
+  </div>
+  <div style="flex:1; background:var(--brand-surface); border:2px solid var(--brand-primary); border-radius:12px; padding:24px; text-align:center; position:relative;">
+    <div style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:var(--brand-primary); color:#000; font-size:0.5em; padding:2px 12px; border-radius:4px; font-weight:700;">POPULAR</div>
+    <h3 style="color:var(--brand-primary);">PRO</h3>
+    <div style="font-size:2.4em; font-weight:800; color:var(--brand-text); margin:8px 0;">$29</div>
+    <p style="color:var(--brand-body); font-size:0.75em;">All features</p>
+  </div>
+</div>
+```
+
+### Team / Profile Cards
+```html
+<div style="display:flex; gap:20px; justify-content:center;">
+  <div style="text-align:center;">
+    <img src="https://i.pravatar.cc/120?u=1" style="width:80px; height:80px; border-radius:50%; border:2px solid var(--brand-primary);" />
+    <div style="font-family:'Outfit'; font-weight:700; margin-top:8px; font-size:0.85em;">Name</div>
+    <div style="color:var(--brand-muted); font-size:0.65em;">Role</div>
+  </div>
+</div>
+```
+
+### Quote / Testimonial Block
+```html
+<div style="background:var(--brand-surface); border-left:3px solid var(--brand-primary); border-radius:8px; padding:20px 24px; margin:16px 0;">
+  <p style="font-size:1.1em; font-style:italic; color:var(--brand-body); line-height:1.6;">"Quote text goes here. Make it punchy and specific."</p>
+  <p style="color:var(--brand-muted); font-size:0.7em; margin-top:12px;">-- Author Name, Title</p>
+</div>
+```
+
+### Stats Callout Strip (3-4 KPIs)
+```html
+<div style="display:flex; gap:20px; justify-content:center; margin:20px 0;">
+  <div style="text-align:center; flex:1;">
+    <div style="font-size:2.6em; font-weight:800; color:var(--brand-primary);">10K+</div>
+    <div style="color:var(--brand-muted); font-size:0.7em; text-transform:uppercase; letter-spacing:0.1em;">Users</div>
+  </div>
+  <div style="text-align:center; flex:1;">
+    <div style="font-size:2.6em; font-weight:800; color:var(--brand-secondary);">99.9%</div>
+    <div style="color:var(--brand-muted); font-size:0.7em; text-transform:uppercase; letter-spacing:0.1em;">Uptime</div>
+  </div>
+  <div style="text-align:center; flex:1;">
+    <div style="font-size:2.6em; font-weight:800; color:#22c55e;">4.9★</div>
+    <div style="color:var(--brand-muted); font-size:0.7em; text-transform:uppercase; letter-spacing:0.1em;">Rating</div>
+  </div>
+</div>
+```
+
+### Process Flow (Horizontal Steps)
+```html
+<div style="display:flex; align-items:center; gap:8px; justify-content:center;">
+  <div style="background:var(--brand-primary); color:#000; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800;">1</div>
+  <div style="color:var(--brand-body); font-size:0.8em;">Research</div>
+  <div style="color:var(--brand-muted);">→</div>
+  <div style="background:var(--brand-secondary); color:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800;">2</div>
+  <div style="color:var(--brand-body); font-size:0.8em;">Design</div>
+  <div style="color:var(--brand-muted);">→</div>
+  <div style="background:#22c55e; color:#000; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800;">3</div>
+  <div style="color:var(--brand-body); font-size:0.8em;">Ship</div>
+</div>
+```
+
+### SWOT Matrix
+```html
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+  <div style="background:#22c55e10; border:1px solid #22c55e33; border-radius:8px; padding:16px;">
+    <div style="color:#22c55e; font-weight:700; font-size:0.8em; margin-bottom:8px;">STRENGTHS</div>
+    <ul style="color:var(--brand-body); font-size:0.7em; margin:0; padding-left:16px;"><li>Item</li></ul>
+  </div>
+  <div style="background:#ef444410; border:1px solid #ef444433; border-radius:8px; padding:16px;">
+    <div style="color:#ef4444; font-weight:700; font-size:0.8em; margin-bottom:8px;">WEAKNESSES</div>
+    <ul style="color:var(--brand-body); font-size:0.7em; margin:0; padding-left:16px;"><li>Item</li></ul>
+  </div>
+  <div style="background:#3b82f610; border:1px solid #3b82f633; border-radius:8px; padding:16px;">
+    <div style="color:#3b82f6; font-weight:700; font-size:0.8em; margin-bottom:8px;">OPPORTUNITIES</div>
+    <ul style="color:var(--brand-body); font-size:0.7em; margin:0; padding-left:16px;"><li>Item</li></ul>
+  </div>
+  <div style="background:#f59e0b10; border:1px solid #f59e0b33; border-radius:8px; padding:16px;">
+    <div style="color:#f59e0b; font-weight:700; font-size:0.8em; margin-bottom:8px;">THREATS</div>
+    <ul style="color:var(--brand-body); font-size:0.7em; margin:0; padding-left:16px;"><li>Item</li></ul>
+  </div>
+</div>
+```
+
+## Advanced MARP Directives (NEW in v3)
+
+Directives most people miss:
+
+| Directive | What it does |
+|-----------|-------------|
+| `<!-- _paginate: skip -->` | Hide page number on title slides |
+| `<!-- _paginate: hold -->` | Keep same page number (for continuation slides) |
+| `<!-- _header: '' -->` | Hide header on specific slide |
+| `<!-- _footer: 'Custom footer' -->` | Per-slide footer override |
+| `<!-- _backgroundColor: #1a1a2e -->` | Per-slide background color |
+| `<!-- _backgroundImage: url() -->` | Full-bleed background image |
+| `<!-- _backgroundSize: cover -->` | Background sizing |
+| `<!-- _backgroundPosition: center -->` | Background alignment |
+| `<!-- _color: #fff -->` | Override all text color for slide |
+| `<!-- _class: lead -->` | Center-aligned layout |
+| `@auto-scaling true` | Auto-fit text to slide (frontmatter) |
+| `<style scoped>` | Styles that only affect current slide |
+
+## Additional Font Pairings (NEW in v3)
+
+| Heading | Body | Use |
+|---|---|---|
+| Inter 800 | Inter 300 | Clean SaaS, tech |
+| Poppins 700 | Poppins 300 | Friendly, startup |
+| Playfair Display 700 | Lato 300 | Elegant, editorial |
+| Montserrat 800 | Open Sans 300 | Corporate, enterprise |
+| Bebas Neue 400 | Source Sans 3 300 | Bold, impact |
+
+## QR Code Slide (Closing)
+
+Use a QR code API for closing slides:
+```html
+<div style="text-align:center;">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://your-link.com" style="border-radius:8px;" />
+  <p style="color:var(--brand-muted); font-size:0.7em; margin-top:8px;">Scan to visit</p>
+</div>
+```
+
+## Gradient Mesh Background
+
+For slides that need more visual punch:
+```html
+<style scoped>
+section {
+  background: radial-gradient(ellipse at 20% 80%, #1a0a2e 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 20%, #0a1a2e 0%, transparent 50%),
+              #000;
+}
+</style>
+```
